@@ -12,7 +12,7 @@ namespace ToyRobotGame.src.Action
     {
         RobotAction robotAction = new RobotAction();
 
-        public void PlaceRobot(int row, int column, Direction placeFacing)
+        public Robot.Robot PlaceRobot(int row, int column, Direction placeFacing)
         {
             Coordinate placeCoordinate = new(row, column);
 
@@ -29,7 +29,10 @@ namespace ToyRobotGame.src.Action
                     robot.Position = placeCoordinate;
                     robot.Facing = placeFacing;
                 }
+
+                return robot;
             }
+            return null;
         }
 
         public void PlaceWall()
