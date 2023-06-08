@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace ToyRobotGame.src.Identities
 {
-    public class Direction
+    public enum Direction
     {
-        public enum DirectionType
-        {
-            NORTH, SOUTH, EAST, WEST
-        }
+        NORTH, SOUTH, EAST, WEST  
     }
 }
