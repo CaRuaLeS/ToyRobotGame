@@ -16,6 +16,5 @@ namespace ToyRobotGame.src.Identities
             Row = row;
             Column = column;
         }
-
     }
 }

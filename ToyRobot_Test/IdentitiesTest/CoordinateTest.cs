@@ -15,7 +15,7 @@ namespace ToyRobot_Test.IdentitiesTest
             int testRow = 2;
             int testColumn = 3;
 
-            Coordinate coordinate = new Coordinate(testRow, testColumn);
+            Coordinate coordinate = new (testRow, testColumn);
 
             Assert.Equal(testRow, coordinate.Row);
             Assert.Equal(testColumn, coordinate.Column);
