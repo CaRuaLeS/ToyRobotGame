@@ -12,22 +12,22 @@ namespace ToyRobot_Test.IdentitiesTest
         [Fact]
         public void DirectionNorthIs0()
         {
-            Assert.Equal(0, (int)Direction.DirectionType.NORTH);
+            Assert.Equal(0, (int)Direction.NORTH);
         }
         [Fact]
         public void DirectionSouthIs1()
         {
-            Assert.Equal(1, (int)Direction.DirectionType.SOUTH);
+            Assert.Equal(1, (int)Direction.SOUTH);
         }
         [Fact]
         public void DirectionEastIs2()
         {
-            Assert.Equal(2, (int)Direction.DirectionType.EAST);
+            Assert.Equal(2, (int)Direction.EAST);
         }
         [Fact]
         public void DirectionWestIs3()
         {
-            Assert.Equal(3, (int)Direction.DirectionType.WEST);
+            Assert.Equal(3, (int)Direction.WEST);
 
         }
 
