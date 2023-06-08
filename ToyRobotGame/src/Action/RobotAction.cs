@@ -53,7 +53,7 @@ namespace ToyRobotGame.src.Action
             }
         }
 
-        private bool isValidCoordinate(Coordinate coordinate)
+        public bool isValidCoordinate(Coordinate coordinate)
         {
             if (coordinate.Row >= 1 && coordinate.Row <=XYBoardLimits && coordinate.Column >= 1 && coordinate.Column <= XYBoardLimits)
             {
