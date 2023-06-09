@@ -10,7 +10,7 @@ namespace ToyRobotGame.src.Action
 {
     public class GameAction
     {
-        // Made it public for testing
+        // Is public for testing
         public Robot.Robot robotInstance;
         private RobotAction robotAction = new RobotAction();
 
@@ -38,9 +38,12 @@ namespace ToyRobotGame.src.Action
         {
 
         }
-        public void Report (Robot.Robot robot)
+        public void Report ()
         {
-
+            if ( robotAction != null )
+            {
+                Console.WriteLine($"{robotInstance.Position.Row},{robotInstance.Position.Column},{robotInstance.Facing}");
+            }
         }
     }
 }
