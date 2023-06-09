@@ -40,7 +40,7 @@ namespace ToyRobotGame.src.Action
         }
         public void Report ()
         {
-            if ( robotAction != null )
+            if ( robotInstance != null )
             {
                 Console.WriteLine($"{robotInstance.Position.Row},{robotInstance.Position.Column},{robotInstance.Facing}");
             }
