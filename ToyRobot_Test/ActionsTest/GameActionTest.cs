@@ -8,6 +8,7 @@ using ToyRobotGame.src.Action;
 using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Robot;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace ToyRobot_Test.ActionsTest
 {
@@ -55,6 +56,7 @@ namespace ToyRobot_Test.ActionsTest
             Assert.Equal(testColumn, testGame.robotInstance.Position.Column);
             Assert.Equal(defaultTestDirection, testGame.robotInstance.Facing);
         }
+
         [Fact]
         public void PlaceRobot_NoRobotInstantiatedAndChangeItsPosition()
         {
@@ -79,5 +81,50 @@ namespace ToyRobot_Test.ActionsTest
             Assert.Equal(4, testGame.robotInstance.Position.Column);
             Assert.Equal(updatedTestDirection, testGame.robotInstance.Facing);
         }
+
+        [Fact]
+        public void Report_RobotAlreadyPlaced()
+        {
+            // Arrange
+
+            // StringWriter stores the data
+            var consoleOut = new StringWriter();
+            // Stores the data in StringWriter()
+            Console.SetOut(consoleOut);
+            GameAction testGame = new GameAction();
+
+            // Act
+            testGame.PlaceRobot(2, 3, Direction.WEST);
+            testGame.Report();
+
+            // Assert
+
+            // Enviroment.NewLine sets the output that comes from store data
+            string stringResult = "2,3,WEST" + Environment.NewLine;
+            var actualOutput = consoleOut.ToString();
+            Assert.Equal(stringResult, actualOutput);
+        }
+
+        [Fact]
+        public void Report_RobotNotPlaced_NoReportResponse()
+        {
+            // Arrange
+
+            // StringWriter stores the data
+            var consoleOut = new StringWriter();
+            // Stores the data in StringWriter()
+            Console.SetOut(consoleOut);
+            GameAction testGame = new GameAction();
+
+            // Act
+            testGame.Report();
+
+            // Assert
+
+            // Enviroment.NewLine sets the output that comes from store data
+            Assert.Null(testGame.robotInstance);
+        }
+
+
     }
 }
