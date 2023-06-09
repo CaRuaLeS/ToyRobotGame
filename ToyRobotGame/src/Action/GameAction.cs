@@ -10,29 +10,28 @@ namespace ToyRobotGame.src.Action
 {
     public class GameAction
     {
-        RobotAction robotAction = new RobotAction();
+        // Made it public for testing
+        public Robot.Robot robotInstance;
+        private RobotAction robotAction = new RobotAction();
 
-        public Robot.Robot PlaceRobot(int row, int column, Direction placeFacing)
+        public void PlaceRobot(int row, int column, Direction placeFacing)
         {
             Coordinate placeCoordinate = new(row, column);
 
             if (robotAction.isValidCoordinate(placeCoordinate))
             {                
-                Robot.Robot robot = new(placeCoordinate, placeFacing);
 
-                if (robot == null)
+                if (robotInstance == null)
                 {
-                    robot = new Robot.Robot(placeCoordinate, placeFacing);
+                    robotInstance = new Robot.Robot(placeCoordinate, placeFacing);
                 }
                 else
                 {
-                    robot.Position = placeCoordinate;
-                    robot.Facing = placeFacing;
+                    robotInstance.Position = placeCoordinate;
+                    robotInstance.Facing = placeFacing;
                 }
 
-                return robot;
             }
-            return null;
         }
 
         public void PlaceWall()
