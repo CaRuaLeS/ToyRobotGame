@@ -4,18 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToyRobotGame.src.Identities;
+using ToyRobotGame.src.Interfaces;
 
 namespace ToyRobotGame.src.Robot
 {
-    public class Robot
+    public class Robot: IRobot, IRobotActions
     {
-        public Coordinate Position;
-        public Direction Facing;
+        public Coordinate Position { get; set; }
+        public Direction Facing { get; set; }
+        IGameActions game;
 
-        public Robot (Coordinate position, Direction facing)
+        public Robot (IGameActions _game)
         {
-            this.Position = position;
-            this.Facing = facing;
+            this.game = _game;
         }
+
+        public void PlaceRobot(int row, int column, Direction facing) { }
+        public void Move() { }
+        public void LookLeft() { }
+        public void LookRight() { }
     }
 }
