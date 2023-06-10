@@ -12,18 +12,21 @@ namespace ToyRobot_Test.RobotTest
     public class RobotTest
     {
         [Fact]
-        public void RobotInitializeWithCorrectPositionAndFacing() 
+        public void Robot_PlaceRobotFunction_CorrectCoordinatesAndFacing()
         {
             // Arrange
-            var testPosition = new Coordinate(0, 0);
+            int testRow = 1;
+            int testColumn = 1;
             var testFacing = Direction.NORTH;
+            Robot testRobot = new Robot();
 
             // Act
-            var robot = new Robot(testPosition, testFacing);
+            testRobot.PlaceRobot(1, 1, Direction.NORTH);
 
             // Assert
-            Assert.Equal(testPosition, robot.Position);
-            Assert.Equal(testFacing, robot.Facing);
+            Assert.Equal(testFacing, testRobot.Facing);
+            Assert.Equal(testRow, testRobot.Position.Row);
+            Assert.Equal(testColumn, testRobot.Position.Column);
 
 
         }
