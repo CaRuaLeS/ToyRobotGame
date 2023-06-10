@@ -27,8 +27,6 @@ namespace ToyRobot_Test.RobotTest
             Assert.Equal(testFacing, testRobot.Facing);
             Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
-
-
         }
         [Fact]
         public void Robot_PlaceRobotFunction_CallTwiceCorrectCoordinates()
@@ -47,8 +45,6 @@ namespace ToyRobot_Test.RobotTest
             Assert.Equal(testFacing, testRobot.Facing);
             Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
-
-
         }
         [Fact]
         public void Robot_PlaceInvalidRobotFunction_FinalShouldBeFirstCoordinates()
@@ -69,9 +65,87 @@ namespace ToyRobot_Test.RobotTest
             Assert.Equal(testFacing, testRobot.Facing);
             Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
-
-
         }
-        
+
+        [Fact]
+        public void Move_ToPosition_21()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testFinalRow = 2;
+            int testFinalColumn = 1;
+            testRobot.PlaceRobot(1, 1, Direction.NORTH);
+
+            // Act
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testFinalRow, testRobot.Position.Row);
+            Assert.Equal(testFinalColumn, testRobot.Position.Column);
+        }
+        [Fact]
+        public void Move_FromTopPositionToOtherSide_ToPosition11()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testFinalRow = 1;
+            int testFinalColumn = 1;
+            testRobot.PlaceRobot(5, 1, Direction.NORTH);
+
+            // Act
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testFinalRow, testRobot.Position.Row);
+            Assert.Equal(testFinalColumn, testRobot.Position.Column);
+        }
+        [Fact]
+        public void Move_FromLeftPositionToOtherSide_ToPosition35()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testFinalRow = 3;
+            int testFinalColumn = 5;
+            testRobot.PlaceRobot(3, 1, Direction.WEST);
+
+            // Act
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testFinalRow, testRobot.Position.Row);
+            Assert.Equal(testFinalColumn, testRobot.Position.Column);
+        }
+        [Fact]
+        public void Move_FromRightPositionToOtherSide_ToPosition31()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testFinalRow = 3;
+            int testFinalColumn = 1;
+            testRobot.PlaceRobot(3, 5, Direction.EAST);
+
+            // Act
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testFinalRow, testRobot.Position.Row);
+            Assert.Equal(testFinalColumn, testRobot.Position.Column);
+        }
+        [Fact]
+        public void Move_FromBottomPositionToOtherSide_ToPosition53()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testFinalRow = 5;
+            int testFinalColumn = 3;
+            testRobot.PlaceRobot(1, 3, Direction.SOUTH);
+
+            // Act
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testFinalRow, testRobot.Position.Row);
+            Assert.Equal(testFinalColumn, testRobot.Position.Column);
+        }
     }
 }
