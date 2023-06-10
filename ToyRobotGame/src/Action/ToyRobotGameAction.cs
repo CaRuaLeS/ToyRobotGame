@@ -20,8 +20,12 @@ namespace ToyRobotGame.src.Action
             walls = new List<Wall>();
         }
 
-        public void PlaceWall(int row, int column) { }
-        public void Report() { }
+        public void PlaceWall(int row, int column) 
+        {
+            
+        }
+
+
 
 
     }
