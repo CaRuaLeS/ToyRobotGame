@@ -10,19 +10,19 @@ using ToyRobotGame.src.Robot;
 
 namespace ToyRobotGame.src.Action
 {
-    public class ToyRobotGameAction: IRobotActions, IGameActions
+    public class ToyRobotGameAction: IGameActions
     {
-        int XYBoardSize = 5;
-        private Robot.Robot robot;
+        private const int XYBoardSize = 5;
         private List<Wall> walls;
 
-        public void PlaceRobot(int row, int column, Direction facing) { }
+        public ToyRobotGameAction()
+        {
+            walls = new List<Wall>();
+        }
+
         public void PlaceWall(int row, int column) { }
         public void Report() { }
 
-        public void Move() { }
-        public void LookLeft() { }
-        public void LookRight() { }
 
     }
 }
