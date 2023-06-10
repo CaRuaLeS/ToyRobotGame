@@ -20,13 +20,39 @@ namespace ToyRobotGame.src.Action
             walls = new List<Wall>();
         }
 
-        public void PlaceWall(int row, int column) 
+        public void PlaceWall(int row, int column, Robot.Robot robot) 
         {
-            
+            Coordinate wallCoordiante = new Coordinate(row, column);
+
+            if (isValidCoordinate(wallCoordiante))
+            {
+                Wall newWall = new(wallCoordiante);
+                if (!isOccupiedCoordinate(newWall.Position, robot))
+                {
+                    walls.Add(newWall);
+                }
+            }
         }
 
+        private bool isValidCoordinate(Coordinate coordinate)
+        {
+            if (coordinate.Row >= 1 && coordinate.Row <= XYBoardSize && coordinate.Column >= 1 && coordinate.Column <= XYBoardSize)
+            {
+                return true;
+            }
+            return false;
+        }
 
+        private bool isOccupiedCoordinate(Coordinate position, Robot.Robot robot)
+        {
 
+            if (robot != null && robot.Position.Row == position.Row && robot.Position.Column == position.Column 
+                || walls.Exists(wall => wall.Position.Row == position.Row && wall.Position.Column == position.Column))
+            {
+                return true;
+            }
+            return false;
 
+        }
     }
 }
