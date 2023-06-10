@@ -23,5 +23,6 @@ namespace ToyRobotGame.src.Robot
         public void Move() { }
         public void LookLeft() { }
         public void LookRight() { }
+        public void Report() { }
     }
 }
