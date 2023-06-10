@@ -9,6 +9,6 @@ namespace ToyRobotGame.src.Interfaces
 {
     public interface IGameActions
     {
-        void PlaceWall(int row, int column);
+        void PlaceWall(int row, int column, Robot.Robot robot);
     }
 }
