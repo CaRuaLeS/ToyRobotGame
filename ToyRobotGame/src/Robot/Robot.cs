@@ -18,11 +18,10 @@ namespace ToyRobotGame.src.Robot
 
         public List<Wall> walls;
 
-        //public Robot(Coordinate position, Direction facing)
-        //{
-        //    this.Position = position;
-        //    this.Facing = facing;
-        //}
+        public Robot()
+        {
+            walls = new List<Wall>();
+        }
 
         public void PlaceRobot(int row, int column, Direction facing)
         {
@@ -79,7 +78,7 @@ namespace ToyRobotGame.src.Robot
         }
         public void PlaceWall(int row, int column) 
         {
-            Coordinate wallCoordinate = new Coordinate(row, column);
+            Coordinate wallCoordinate = new (row, column);
 
             if (isValidCoordinate(wallCoordinate))
             {
