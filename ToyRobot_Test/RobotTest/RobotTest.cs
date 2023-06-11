@@ -147,6 +147,23 @@ namespace ToyRobot_Test.RobotTest
             Assert.Equal(testFinalRow, testRobot.Position.Row);
             Assert.Equal(testFinalColumn, testRobot.Position.Column);
         }
+        [Fact]
+        public void Move_WithWallPlaced_StayInPosition11()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testRow = 1;
+            int testColumn = 1;
+            testRobot.PlaceRobot(testRow, testColumn, Direction.NORTH);
+
+            // Act
+            testRobot.PlaceWall(2, 1);
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testRow, testRobot.Position.Row);
+            Assert.Equal(testColumn, testRobot.Position.Column);
+        }
 
         [Fact]
         public void LookLeft_FacingMustBeSOUTH()
@@ -226,7 +243,7 @@ namespace ToyRobot_Test.RobotTest
         }
 
         [Fact]
-        public void Report_RsultMustBe_23NORTH()
+        public void Report_ResultMustBe_23NORTH()
         {
             // Arrange
             Robot testRobot = new Robot();
@@ -246,6 +263,20 @@ namespace ToyRobot_Test.RobotTest
 
             // Assert
             Assert.Equal(testReportResult, actualTestOutput);
+        }
+        [Fact]
+        public void PlaceWall_ShouldBePlaced_InPosition22()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testWallRow = 2;
+            int testWallColumn = 2;
+
+            // Act
+            testRobot.PlaceWall(testWallRow, testWallColumn);
+
+            // Assert
+            Assert.Equal(1, testRobot.walls.Count);
         }
     }
 }
