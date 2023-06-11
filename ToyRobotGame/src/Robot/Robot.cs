@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ToyRobotGame.src.Action;
 using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Interfaces;
+using ToyRobotGame.src.Obstacles;
 
 namespace ToyRobotGame.src.Robot
 {
@@ -14,6 +15,8 @@ namespace ToyRobotGame.src.Robot
         private int XYBoardSize = 5;
         public Coordinate Position { get; set; }
         public Direction Facing { get; set; }
+
+        public List<Wall> walls;
 
         //public Robot(Coordinate position, Direction facing)
         //{
@@ -50,7 +53,11 @@ namespace ToyRobotGame.src.Robot
                     if (isValidCoordinate(this.Position))
                     {
                         Coordinate newCoordinate = CalculateNewCoordinatePosition();
+                        if (!isOccupiedCoordinate(newCoordinate))
+                        {
                         this.Position = newCoordinate;
+                            
+                        }
                     }
                 }
             }
@@ -70,7 +77,19 @@ namespace ToyRobotGame.src.Robot
                 Console.WriteLine($"{this.Position.Row},{this.Position.Column},{this.Facing}");
             }
         }
-        public void PlaceWall(int row, int column) { }
+        public void PlaceWall(int row, int column) 
+        {
+            Coordinate wallCoordinate = new Coordinate(row, column);
+
+            if (isValidCoordinate(wallCoordinate))
+            {
+                Wall newWall = new(wallCoordinate);
+                if (!isOccupiedCoordinate(wallCoordinate))
+                {
+                    walls.Add(newWall);
+                }
+            }
+        }
 
         private void ChangeFacingDirection(int sideToLook)
         {
@@ -85,13 +104,24 @@ namespace ToyRobotGame.src.Robot
                 this.Facing = (Direction)newValue;
             }
         }
-        private bool isValidCoordinate(Coordinate coordinate)
+        private bool isValidCoordinate(Coordinate position)
         {
-            if (coordinate.Row >= 1 && coordinate.Row <= XYBoardSize && coordinate.Column >= 1 && coordinate.Column <= XYBoardSize)
+            if (position.Row >= 1 && position.Row <= XYBoardSize && position.Column >= 1 && position.Column <= XYBoardSize)
             {
                 return true;
             }
             return false;
+        }
+        private bool isOccupiedCoordinate(Coordinate position)
+        {
+
+            if (this != null && this.Position.Row == position.Row && this.Position.Column == position.Column
+                || walls.Exists(wall => wall.Position.Row == position.Row && wall.Position.Column == position.Column))
+            {
+                return true;
+            }
+            return false;
+
         }
         private Coordinate CalculateNewCoordinatePosition()
         {
