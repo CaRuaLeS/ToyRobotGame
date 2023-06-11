@@ -13,7 +13,7 @@ namespace ToyRobotGame.src.Robot
     public class Robot: IRobot, IRobotActions, IGameActions
     {
         private int XYBoardSize = 5;
-        public Coordinate Position { get; set; }
+        public Coordinate? Position { get; set; }
         public Direction Facing { get; set; }
 
         public List<Wall> walls;
@@ -45,20 +45,15 @@ namespace ToyRobotGame.src.Robot
         }
         public void Move() 
         {
-            if (this != null)
+            if (this.Position != null && isValidCoordinate(this.Position))
             {
-                if (this.Position != null)
+                Coordinate newCoordinate = CalculateNewCoordinatePosition();
+                if (!isOccupiedCoordinate(newCoordinate))
                 {
-                    if (isValidCoordinate(this.Position))
-                    {
-                        Coordinate newCoordinate = CalculateNewCoordinatePosition();
-                        if (!isOccupiedCoordinate(newCoordinate))
-                        {
-                        this.Position = newCoordinate;
+                this.Position = newCoordinate;
                             
-                        }
-                    }
                 }
+                    
             }
         }
         public void LookLeft() 
@@ -71,7 +66,7 @@ namespace ToyRobotGame.src.Robot
         }
         public void Report()
         {
-            if (this != null)
+            if (this.Position != null)
             {
                 Console.WriteLine($"{this.Position.Row},{this.Position.Column},{this.Facing}");
             }
@@ -95,7 +90,7 @@ namespace ToyRobotGame.src.Robot
             // SideToLook = -1 --> Look left
             // SideToLook = 1 --> Look right
 
-            if (this != null)
+            if (this.Position != null)
             {
                 int newValue = ((int)this.Facing + sideToLook) % 4;
                 if (newValue < 1) { newValue = 4; }
@@ -114,7 +109,7 @@ namespace ToyRobotGame.src.Robot
         private bool isOccupiedCoordinate(Coordinate position)
         {
 
-            if (this != null && this.Position.Row == position.Row && this.Position.Column == position.Column
+            if (this.Position != null && this.Position.Row == position.Row && this.Position.Column == position.Column
                 || walls.Exists(wall => wall.Position.Row == position.Row && wall.Position.Column == position.Column))
             {
                 return true;
