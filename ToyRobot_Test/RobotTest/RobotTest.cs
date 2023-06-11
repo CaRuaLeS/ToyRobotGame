@@ -147,5 +147,82 @@ namespace ToyRobot_Test.RobotTest
             Assert.Equal(testFinalRow, testRobot.Position.Row);
             Assert.Equal(testFinalColumn, testRobot.Position.Column);
         }
+
+        [Fact]
+        public void LookLeft_FacingMustBeSOUTH()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            Direction testingDirectionResult = Direction.EAST;
+            testRobot.PlaceRobot(1, 3, Direction.SOUTH);
+
+            // Act
+            testRobot.LookLeft();
+
+            // Assert
+            Assert.Equal(testingDirectionResult, testRobot.Facing);
+        }
+        [Fact]
+        public void LookLeft_FacingMustBeWEST()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            Direction testingDirectionResult = Direction.WEST;
+            testRobot.PlaceRobot(1, 3, Direction.NORTH);
+
+            // Act
+            testRobot.LookLeft();
+
+            // Assert
+            Assert.Equal(testingDirectionResult, testRobot.Facing);
+        }
+        [Fact]
+        public void LookRight_FacingMustBeWEST()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            Direction testingDirectionResult = Direction.WEST;
+            testRobot.PlaceRobot(1, 3, Direction.SOUTH);
+
+            // Act
+            testRobot.LookRight();
+
+            // Assert
+            Assert.Equal(testingDirectionResult, testRobot.Facing);
+        }
+        [Fact]
+        public void LookRight_FacingMustBeNORTH()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            Direction testingDirectionResult = Direction.NORTH;
+            testRobot.PlaceRobot(1, 3, Direction.WEST);
+
+            // Act
+            testRobot.LookRight();
+
+            // Assert
+            Assert.Equal(testingDirectionResult, testRobot.Facing);
+        }
+        [Fact]
+        public void Look_RughtAndLeftMultipleTimes_FacingMustBeSOUTH()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            Direction testingDirectionResult = Direction.SOUTH;
+            testRobot.PlaceRobot(1, 3, Direction.EAST);
+
+            // Act
+            testRobot.LookLeft();
+            testRobot.LookLeft();
+            testRobot.LookRight();
+            testRobot.LookLeft();
+            testRobot.LookRight();
+            testRobot.LookRight();
+            testRobot.LookRight();
+
+            // Assert
+            Assert.Equal(testingDirectionResult, testRobot.Facing);
+        }
     }
 }
