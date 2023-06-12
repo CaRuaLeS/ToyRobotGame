@@ -145,5 +145,26 @@ namespace ToyRobot_Test.Action
             // Assert
             Assert.Equal(Direction.EAST, testRobot.Facing);
         }
+        [Fact]
+        public void Command_Report_Is23NORTH()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+
+            testProcessor.ProcessCommand("PLACE_ROBOT 2,3,NORTH");
+            // StringWriter stores the data
+            var consoleOut = new StringWriter();
+            // SetOut stores the data in consoleOut
+            Console.SetOut(consoleOut);
+
+            // Act
+            testProcessor.ProcessCommand("REPORT");
+            var actualTestOutput = consoleOut.ToString();
+            string testReportResult = "2,3,NORTH" + Environment.NewLine;
+
+            // Assert
+            Assert.Equal(testReportResult, actualTestOutput);
+        }
     }
 }
