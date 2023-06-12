@@ -36,6 +36,7 @@ namespace ToyRobotGame.src.Action
                         if (int.TryParse(robotPlace[0], out row) && int.TryParse(robotPlace[1], out col) &&
                         Enum.TryParse(robotPlace[2], out facing))
                         {
+                            if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
                             robot.PlaceRobot(row, col, facing); 
                         }
 
