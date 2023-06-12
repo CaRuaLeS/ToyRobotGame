@@ -39,7 +39,6 @@ namespace ToyRobotGame.src.Action
                             if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
                             robot.PlaceRobot(row, col, facing); 
                         }
-
                     }
                     break;
                 case "PLACE_WALL":
@@ -52,8 +51,21 @@ namespace ToyRobotGame.src.Action
                             if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
                                 robot.PlaceWall(row, col);
                         }
-
                     }
+                    break;
+                case "MOVE":
+                    robot.Move();
+                    break;
+                case "LEFT":
+                    robot.LookLeft();
+                    break;
+                case "RIGHT":
+                    robot.LookRight();
+                    break;
+                case "REPORT":
+                    robot.Report();
+                    break;
+                default:
                     break;
             }
         }
