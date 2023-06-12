@@ -20,7 +20,7 @@ namespace ToyRobotGame.src.Action
         {
             string[] parts = command.Split(' ');
 
-            if (parts.Length == 0 ) 
+            if (parts.Length == 0 || command == "PLACE_ROBOT" || command == "PLACE_WALL") 
                 return;
 
             string action = parts[0];
@@ -28,7 +28,7 @@ namespace ToyRobotGame.src.Action
             switch(action)
             {
                 case "PLACE_ROBOT":
-                    string[] robotPlace = parts[1].Split(',');
+                    string[] robotPlace = parts[1]?.Split(',');
                     if (robotPlace.Length == 3)
                     {
                         int row, col;
@@ -42,7 +42,7 @@ namespace ToyRobotGame.src.Action
                     }
                     break;
                 case "PLACE_WALL":
-                    string[] wallPlace = parts[1].Split(',');
+                    string[] wallPlace = parts[1]?.Split(',');
                     if (wallPlace.Length == 2)
                     {
                         int row, col;
