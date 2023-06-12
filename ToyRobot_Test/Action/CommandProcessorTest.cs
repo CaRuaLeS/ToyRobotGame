@@ -79,20 +79,71 @@ namespace ToyRobot_Test.Action
 
         }
         [Fact]
+        public void Command_Move_ToPosition21()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+            int testFinalRow = 2;
+            int testFinalColumn = 1;
+            string testValidCommand = "MOVE";
+
+
+            // Act
+            testRobot.PlaceRobot(1, 1, Direction.NORTH);
+            testProcessor.ProcessCommand(testValidCommand);
+
+            // Assert
+            Assert.Equal(testFinalRow, testRobot.Position.Row);
+            Assert.Equal(testFinalColumn, testRobot.Position.Column);
+        }
+        [Fact]
         public void Command_PlaceWallBlockRobot_PLaceShouldBe22()
         {
             // Arrange
             Robot testRobot = new Robot();
             CommandProcessor testProcessor = new CommandProcessor(testRobot);
-            string testValidCommand = "PLACE_WALL 2,3";
+            string testValidCommand = "PLACE_WALL 3,2";
 
             // Act
-            testProcessor.ProcessCommand(testValidCommand);
             testProcessor.ProcessCommand("PLACE_ROBOT 2,2,NORTH");
+            testProcessor.ProcessCommand(testValidCommand);
+            testProcessor.ProcessCommand("MOVE");
 
             // Assert
-            Assert.Equal(1, testRobot.walls.Count);
+            Assert.Equal(2, testRobot.Position.Row);
+            Assert.Equal(2, testRobot.Position.Column);
 
+        }
+        [Fact]
+        public void Command_Left_FacingShouldBeWest()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+            string testValidCommand = "LEFT";
+
+            // Act
+            testProcessor.ProcessCommand("PLACE_ROBOT 2,2,NORTH");
+            testProcessor.ProcessCommand(testValidCommand);
+
+            // Assert
+            Assert.Equal(Direction.WEST, testRobot.Facing);
+        }
+        [Fact]
+        public void Command_Right_FacingShouldBeEast()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+            string testValidCommand = "RIGHT";
+
+            // Act
+            testProcessor.ProcessCommand("PLACE_ROBOT 2,2,NORTH");
+            testProcessor.ProcessCommand(testValidCommand);
+
+            // Assert
+            Assert.Equal(Direction.EAST, testRobot.Facing);
         }
     }
 }
