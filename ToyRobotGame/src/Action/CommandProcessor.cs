@@ -49,7 +49,8 @@ namespace ToyRobotGame.src.Action
                         int row, col;
                         if (int.TryParse(wallPlace[0], out row) && int.TryParse(wallPlace[1], out col))
                         {
-                            robot.PlaceWall(row, col);
+                            if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
+                                robot.PlaceWall(row, col);
                         }
 
                     }
