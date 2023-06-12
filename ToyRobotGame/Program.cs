@@ -1,4 +1,6 @@
 ﻿using System;
+using ToyRobotGame.src.Action;
+using ToyRobotGame.src.Robot;
 
 namespace ToyRobotGame // Note: actual namespace depends on the project name.
 {
@@ -6,7 +8,18 @@ namespace ToyRobotGame // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Robot robot = new Robot();
+            CommandProcessor commandProcessor = new CommandProcessor(robot);
+
+            while (true)
+            {
+                string userInput = Console.ReadLine();
+                if (userInput == "END GAME")
+                    break;
+                
+                commandProcessor.ProcessCommand(userInput);
+            }
+
         }
     }
 }
