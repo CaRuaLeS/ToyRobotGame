@@ -18,7 +18,7 @@ namespace ToyRobot_Test.Action
             // Arrange
             Robot testRobot = new Robot();
             CommandProcessor testProcessor = new CommandProcessor(testRobot);
-            string testCommand = "PLACE_ROBOT 2,3,WEST";
+            string testCommand = "PLACE_ROBOT 3,2,WEST";
 
             // Act
             testProcessor.ProcessCommand(testCommand);
@@ -35,7 +35,7 @@ namespace ToyRobot_Test.Action
             // Arrange
             Robot testRobot = new Robot();
             CommandProcessor testProcessor = new CommandProcessor(testRobot);
-            string testValidCommand = "PLACE_ROBOT 2,3,WEST";
+            string testValidCommand = "PLACE_ROBOT 3,2,WEST";
             string testInValidCommand = "PLACE_ROBOT 2,7,NORTH";
 
             // Act
@@ -103,7 +103,7 @@ namespace ToyRobot_Test.Action
             // Arrange
             Robot testRobot = new Robot();
             CommandProcessor testProcessor = new CommandProcessor(testRobot);
-            string testValidCommand = "PLACE_WALL 3,2";
+            string testValidCommand = "PLACE_WALL 2,3";
 
             // Act
             testProcessor.ProcessCommand("PLACE_ROBOT 2,2,NORTH");
@@ -146,13 +146,13 @@ namespace ToyRobot_Test.Action
             Assert.Equal(Direction.EAST, testRobot.Facing);
         }
         [Fact]
-        public void Command_Report_Is23NORTH()
+        public void Command_Report_Is32NORTH()
         {
             // Arrange
             Robot testRobot = new Robot();
             CommandProcessor testProcessor = new CommandProcessor(testRobot);
 
-            testProcessor.ProcessCommand("PLACE_ROBOT 2,3,NORTH");
+            testProcessor.ProcessCommand("PLACE_ROBOT 3,2,NORTH");
             // StringWriter stores the data
             var consoleOut = new StringWriter();
             // SetOut stores the data in consoleOut
@@ -161,7 +161,7 @@ namespace ToyRobot_Test.Action
             // Act
             testProcessor.ProcessCommand("REPORT");
             var actualTestOutput = consoleOut.ToString();
-            string testReportResult = "2,3,NORTH" + Environment.NewLine;
+            string testReportResult = "3,2,NORTH" + Environment.NewLine;
 
             // Assert
             Assert.Equal(testReportResult, actualTestOutput);

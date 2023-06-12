@@ -39,7 +39,7 @@ namespace ToyRobot_Test.RobotTest
 
             // Act
             testRobot.PlaceRobot(1, 1, Direction.NORTH);
-            testRobot.PlaceRobot(testRow, testColumn, testFacing);
+            testRobot.PlaceRobot(testColumn, testRow, testFacing);
 
             // Assert
             Assert.Equal(testFacing, testRobot.Facing);
@@ -90,7 +90,7 @@ namespace ToyRobot_Test.RobotTest
             Robot testRobot = new Robot();
             int testFinalRow = 1;
             int testFinalColumn = 1;
-            testRobot.PlaceRobot(5, 1, Direction.NORTH);
+            testRobot.PlaceRobot(1, 5, Direction.NORTH);
 
             // Act
             testRobot.Move();
@@ -106,7 +106,7 @@ namespace ToyRobot_Test.RobotTest
             Robot testRobot = new Robot();
             int testFinalRow = 3;
             int testFinalColumn = 5;
-            testRobot.PlaceRobot(3, 1, Direction.WEST);
+            testRobot.PlaceRobot(1, 3, Direction.WEST);
 
             // Act
             testRobot.Move();
@@ -122,7 +122,7 @@ namespace ToyRobot_Test.RobotTest
             Robot testRobot = new Robot();
             int testFinalRow = 3;
             int testFinalColumn = 1;
-            testRobot.PlaceRobot(3, 5, Direction.EAST);
+            testRobot.PlaceRobot(5, 3, Direction.EAST);
 
             // Act
             testRobot.Move();
@@ -138,7 +138,7 @@ namespace ToyRobot_Test.RobotTest
             Robot testRobot = new Robot();
             int testFinalRow = 5;
             int testFinalColumn = 3;
-            testRobot.PlaceRobot(1, 3, Direction.SOUTH);
+            testRobot.PlaceRobot(3, 1, Direction.SOUTH);
 
             // Act
             testRobot.Move();
@@ -157,7 +157,7 @@ namespace ToyRobot_Test.RobotTest
             testRobot.PlaceRobot(testRow, testColumn, Direction.NORTH);
 
             // Act
-            testRobot.PlaceWall(2, 1);
+            testRobot.PlaceWall(1, 2);
             testRobot.Move();
 
             // Assert
@@ -286,7 +286,7 @@ namespace ToyRobot_Test.RobotTest
             int testRow = 2;
             int testColumn = 1;
             Direction testFacing = Direction.EAST;
-            testRobot.PlaceRobot(testRow, testColumn, testFacing);
+            testRobot.PlaceRobot(testColumn, testRow, testFacing);
 
             // Act
             testRobot.PlaceWall(2, 2);
@@ -304,7 +304,7 @@ namespace ToyRobot_Test.RobotTest
             int testRow = 5;
             int testColumn = 1;
             Direction testFacing = Direction.NORTH;
-            testRobot.PlaceRobot(testRow, testColumn, testFacing);
+            testRobot.PlaceRobot(testColumn, testRow, testFacing);
 
             // Act
             testRobot.PlaceWall(1, 1);
