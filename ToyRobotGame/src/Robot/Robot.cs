@@ -23,9 +23,9 @@ namespace ToyRobotGame.src.Robot
             walls = new List<Wall>();
         }
 
-        public void PlaceRobot(int row, int column, Direction facing)
+        public void PlaceRobot(int column, int row, Direction facing)
         {
-            Coordinate placeCoordinate = new(row, column);
+            Coordinate placeCoordinate = new(column, row);
 
             if (isValidCoordinate(placeCoordinate))
             {
@@ -68,12 +68,12 @@ namespace ToyRobotGame.src.Robot
         {
             if (this.Position != null)
             {
-                Console.WriteLine($"{this.Position.Row},{this.Position.Column},{this.Facing}");
+                Console.WriteLine($"{this.Position.Column},{this.Position.Row},{this.Facing}");
             }
         }
-        public void PlaceWall(int row, int column) 
+        public void PlaceWall(int column, int row) 
         {
-            Coordinate wallCoordinate = new (row, column);
+            Coordinate wallCoordinate = new (column, row);
 
             if (isValidCoordinate(wallCoordinate))
             {
@@ -119,7 +119,7 @@ namespace ToyRobotGame.src.Robot
         }
         private Coordinate CalculateNewCoordinatePosition()
         {
-            Coordinate newPosition = new(this.Position.Row, this.Position.Column);
+            Coordinate newPosition = new(this.Position.Column, this.Position.Row);
 
             switch (this.Facing)
             {

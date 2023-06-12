@@ -33,11 +33,11 @@ namespace ToyRobotGame.src.Action
                     {
                         int row, col;
                         Direction facing;
-                        if (int.TryParse(robotPlace[0], out row) && int.TryParse(robotPlace[1], out col) &&
+                        if (int.TryParse(robotPlace[0], out col) && int.TryParse(robotPlace[1], out row) &&
                         Enum.TryParse(robotPlace[2], out facing))
                         {
                             if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
-                            robot.PlaceRobot(row, col, facing); 
+                            robot.PlaceRobot(col, row, facing); 
                         }
                     }
                     break;
@@ -46,10 +46,10 @@ namespace ToyRobotGame.src.Action
                     if (wallPlace.Length == 2)
                     {
                         int row, col;
-                        if (int.TryParse(wallPlace[0], out row) && int.TryParse(wallPlace[1], out col))
+                        if (int.TryParse(wallPlace[0], out col) && int.TryParse(wallPlace[1], out row))
                         {
                             if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
-                                robot.PlaceWall(row, col);
+                                robot.PlaceWall(col, row);
                         }
                     }
                     break;

@@ -11,10 +11,10 @@ namespace ToyRobotGame.src.Identities
         public int Row;
         public int Column;
 
-        public Coordinate(int row, int column)
+        public Coordinate(int column, int row)
         {
-            Row = row;
             Column = column;
+            Row = row;
         }
     }
 }
