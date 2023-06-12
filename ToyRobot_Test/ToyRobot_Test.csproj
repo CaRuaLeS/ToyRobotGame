@@ -26,4 +26,8 @@
     <ProjectReference Include="..\ToyRobotGame\ToyRobotGame.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ActionsTest\" />
+  </ItemGroup>
+
 </Project>
