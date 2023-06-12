@@ -278,5 +278,41 @@ namespace ToyRobot_Test.RobotTest
             // Assert
             Assert.Equal(1, testRobot.walls.Count);
         }
+        [Fact]
+        public void PlaceWall_ShouldBlockRobotMovement_RobotInPosition21()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testRow = 2;
+            int testColumn = 1;
+            Direction testFacing = Direction.EAST;
+            testRobot.PlaceRobot(testRow, testColumn, testFacing);
+
+            // Act
+            testRobot.PlaceWall(2, 2);
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testRow, testRobot.Position.Row);
+            Assert.Equal(testColumn, testRobot.Position.Column);
+        }
+        [Fact]
+        public void PlaceWall_ShouldBlockRobotMovementToOtherSideOfTheBoard_RobotInPosition51()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            int testRow = 5;
+            int testColumn = 1;
+            Direction testFacing = Direction.NORTH;
+            testRobot.PlaceRobot(testRow, testColumn, testFacing);
+
+            // Act
+            testRobot.PlaceWall(1, 1);
+            testRobot.Move();
+
+            // Assert
+            Assert.Equal(testRow, testRobot.Position.Row);
+            Assert.Equal(testColumn, testRobot.Position.Column);
+        }
     }
 }
