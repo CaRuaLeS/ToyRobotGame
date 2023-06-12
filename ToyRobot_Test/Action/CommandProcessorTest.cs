@@ -29,5 +29,24 @@ namespace ToyRobot_Test.Action
             Assert.Equal(Direction.WEST, testRobot.Facing);
 
         }
+        [Fact]
+        public void Command_PlaceRobotInvalidAction_NoChangePosition()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+            string testValidCommand = "PLACE_ROBOT 2,3,WEST";
+            string testInValidCommand = "PLACE_ROBOT 2,7,NORTH";
+
+            // Act
+            testProcessor.ProcessCommand(testValidCommand);
+            testProcessor.ProcessCommand(testInValidCommand);
+
+            // Assert
+            Assert.Equal(2, testRobot.Position.Row);
+            Assert.Equal(3, testRobot.Position.Column);
+            Assert.Equal(Direction.WEST, testRobot.Facing);
+
+        }
     }
 }
