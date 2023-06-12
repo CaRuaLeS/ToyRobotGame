@@ -12,7 +12,7 @@ namespace ToyRobotGame.src.Robot
 {
     public class Robot: IRobot, IRobotActions, IGameActions
     {
-        private int XYBoardSize = 5;
+        public int XYBoardSize = 5;
         public Coordinate? Position { get; set; }
         public Direction Facing { get; set; }
 
