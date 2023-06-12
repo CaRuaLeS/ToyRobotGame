@@ -48,5 +48,51 @@ namespace ToyRobot_Test.Action
             Assert.Equal(Direction.WEST, testRobot.Facing);
 
         }
+        [Fact]
+        public void Command_PlaceWall_WallListShouldBe1()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+            string testValidCommand = "PLACE_WALL 2,3";
+
+            // Act
+            testProcessor.ProcessCommand(testValidCommand);
+
+            // Assert
+            Assert.Equal(1, testRobot.walls.Count);
+
+        }
+        [Fact]
+        public void Command_PlaceWallIvalid_WallListShouldBe0()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+            string testValidCommand = "PLACE_WALL 2,9";
+
+            // Act
+            testProcessor.ProcessCommand(testValidCommand);
+
+            // Assert
+            Assert.Equal(0, testRobot.walls.Count);
+
+        }
+        [Fact]
+        public void Command_PlaceWallBlockRobot_PLaceShouldBe22()
+        {
+            // Arrange
+            Robot testRobot = new Robot();
+            CommandProcessor testProcessor = new CommandProcessor(testRobot);
+            string testValidCommand = "PLACE_WALL 2,3";
+
+            // Act
+            testProcessor.ProcessCommand(testValidCommand);
+            testProcessor.ProcessCommand("PLACE_ROBOT 2,2,NORTH");
+
+            // Assert
+            Assert.Equal(1, testRobot.walls.Count);
+
+        }
     }
 }
