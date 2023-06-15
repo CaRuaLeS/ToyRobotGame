@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToyRobotGame.src.Identities;
+﻿using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Robot;
-using Xunit;
 
 namespace ToyRobot_Test.RobotTest
 {
