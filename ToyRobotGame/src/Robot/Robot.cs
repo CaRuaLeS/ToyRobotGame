@@ -27,7 +27,7 @@ namespace ToyRobotGame.src.Robot
         {
             Coordinate placeCoordinate = new(column, row);
 
-            if (isValidCoordinate(placeCoordinate))
+            if (IsValidCoordinate(placeCoordinate))
             {
 
                 if (this == null)
@@ -45,10 +45,10 @@ namespace ToyRobotGame.src.Robot
         }
         public void Move() 
         {
-            if (this.Position != null && isValidCoordinate(this.Position))
+            if (this.Position != null && IsValidCoordinate(this.Position))
             {
                 Coordinate newCoordinate = CalculateNewCoordinatePosition();
-                if (!isOccupiedCoordinate(newCoordinate))
+                if (!IsOccupiedCoordinate(newCoordinate))
                 {
                 this.Position = newCoordinate;
                             
@@ -75,10 +75,10 @@ namespace ToyRobotGame.src.Robot
         {
             Coordinate wallCoordinate = new (column, row);
 
-            if (isValidCoordinate(wallCoordinate))
+            if (IsValidCoordinate(wallCoordinate))
             {
                 Wall newWall = new(wallCoordinate);
-                if (!isOccupiedCoordinate(wallCoordinate))
+                if (!IsOccupiedCoordinate(wallCoordinate))
                 {
                     walls.Add(newWall);
                 }
@@ -98,7 +98,7 @@ namespace ToyRobotGame.src.Robot
                 this.Facing = (Direction)newValue;
             }
         }
-        private bool isValidCoordinate(Coordinate position)
+        private bool IsValidCoordinate(Coordinate position)
         {
             if (position.Row >= 1 && position.Row <= XYBoardSize && position.Column >= 1 && position.Column <= XYBoardSize)
             {
@@ -106,7 +106,7 @@ namespace ToyRobotGame.src.Robot
             }
             return false;
         }
-        private bool isOccupiedCoordinate(Coordinate position)
+        private bool IsOccupiedCoordinate(Coordinate position)
         {
 
             if (this.Position != null && this.Position.Row == position.Row && this.Position.Column == position.Column
