@@ -60,7 +60,7 @@ namespace ToyRobot_Test.Action
             testProcessor.ProcessCommand(testValidCommand);
 
             // Assert
-            Assert.Equal(1, testRobot.walls.Count);
+            Assert.Single(testRobot.walls);
 
         }
         [Fact]
@@ -75,7 +75,7 @@ namespace ToyRobot_Test.Action
             testProcessor.ProcessCommand(testValidCommand);
 
             // Assert
-            Assert.Equal(0, testRobot.walls.Count);
+            Assert.Empty(testRobot.walls);
 
         }
         [Fact]
