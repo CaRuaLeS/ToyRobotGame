@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToyRobotGame.src.Identities;
+﻿using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Robot;
-using Xunit;
 
 namespace ToyRobot_Test.RobotTest
 {
@@ -18,7 +12,7 @@ namespace ToyRobot_Test.RobotTest
             int testRow = 1;
             int testColumn = 1;
             var testFacing = Direction.NORTH;
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
 
             // Act
             testRobot.PlaceRobot(testRow, testColumn, testFacing);
@@ -35,7 +29,7 @@ namespace ToyRobot_Test.RobotTest
             int testRow = 3;
             int testColumn = 2;
             var testFacing = Direction.SOUTH;
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
 
             // Act
             testRobot.PlaceRobot(1, 1, Direction.NORTH);
@@ -55,7 +49,7 @@ namespace ToyRobot_Test.RobotTest
             var testFacing = Direction.SOUTH;
             int testInvalidRow = 8;
             int testInvalidColumn = 9;
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
 
             // Act
             testRobot.PlaceRobot(testRow, testColumn, testFacing);
@@ -71,7 +65,7 @@ namespace ToyRobot_Test.RobotTest
         public void Move_ToPosition_21()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testFinalRow = 2;
             int testFinalColumn = 1;
             testRobot.PlaceRobot(1, 1, Direction.NORTH);
@@ -87,7 +81,7 @@ namespace ToyRobot_Test.RobotTest
         public void Move_FromTopPositionToOtherSide_ToPosition11()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testFinalRow = 1;
             int testFinalColumn = 1;
             testRobot.PlaceRobot(1, 5, Direction.NORTH);
@@ -103,7 +97,7 @@ namespace ToyRobot_Test.RobotTest
         public void Move_FromLeftPositionToOtherSide_ToPosition35()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testFinalRow = 3;
             int testFinalColumn = 5;
             testRobot.PlaceRobot(1, 3, Direction.WEST);
@@ -119,7 +113,7 @@ namespace ToyRobot_Test.RobotTest
         public void Move_FromRightPositionToOtherSide_ToPosition31()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testFinalRow = 3;
             int testFinalColumn = 1;
             testRobot.PlaceRobot(5, 3, Direction.EAST);
@@ -135,7 +129,7 @@ namespace ToyRobot_Test.RobotTest
         public void Move_FromBottomPositionToOtherSide_ToPosition53()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testFinalRow = 5;
             int testFinalColumn = 3;
             testRobot.PlaceRobot(3, 1, Direction.SOUTH);
@@ -151,7 +145,7 @@ namespace ToyRobot_Test.RobotTest
         public void Move_WithWallPlaced_StayInPosition11()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testRow = 1;
             int testColumn = 1;
             testRobot.PlaceRobot(testRow, testColumn, Direction.NORTH);
@@ -169,7 +163,7 @@ namespace ToyRobot_Test.RobotTest
         public void LookLeft_FacingMustBeSOUTH()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             Direction testingDirectionResult = Direction.EAST;
             testRobot.PlaceRobot(1, 3, Direction.SOUTH);
 
@@ -183,7 +177,7 @@ namespace ToyRobot_Test.RobotTest
         public void LookLeft_FacingMustBeWEST()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             Direction testingDirectionResult = Direction.WEST;
             testRobot.PlaceRobot(1, 3, Direction.NORTH);
 
@@ -197,7 +191,7 @@ namespace ToyRobot_Test.RobotTest
         public void LookRight_FacingMustBeWEST()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             Direction testingDirectionResult = Direction.WEST;
             testRobot.PlaceRobot(1, 3, Direction.SOUTH);
 
@@ -211,7 +205,7 @@ namespace ToyRobot_Test.RobotTest
         public void LookRight_FacingMustBeNORTH()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             Direction testingDirectionResult = Direction.NORTH;
             testRobot.PlaceRobot(1, 3, Direction.WEST);
 
@@ -225,7 +219,7 @@ namespace ToyRobot_Test.RobotTest
         public void Look_RughtAndLeftMultipleTimes_FacingMustBeSOUTH()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             Direction testingDirectionResult = Direction.SOUTH;
             testRobot.PlaceRobot(1, 3, Direction.EAST);
 
@@ -246,7 +240,7 @@ namespace ToyRobot_Test.RobotTest
         public void Report_ResultMustBe_23NORTH()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             Direction testDirection = Direction.NORTH;
             int testRow = 2;
             int testCol = 3;
@@ -268,7 +262,7 @@ namespace ToyRobot_Test.RobotTest
         public void PlaceWall_ShouldBePlaced_InPosition22()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testWallRow = 2;
             int testWallColumn = 2;
 
@@ -276,13 +270,13 @@ namespace ToyRobot_Test.RobotTest
             testRobot.PlaceWall(testWallRow, testWallColumn);
 
             // Assert
-            Assert.Equal(1, testRobot.walls.Count);
+            Assert.Single(testRobot.walls);
         }
         [Fact]
         public void PlaceWall_ShouldBlockRobotMovement_RobotInPosition21()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testRow = 2;
             int testColumn = 1;
             Direction testFacing = Direction.EAST;
@@ -300,7 +294,7 @@ namespace ToyRobot_Test.RobotTest
         public void PlaceWall_ShouldBlockRobotMovementToOtherSideOfTheBoard_RobotInPosition51()
         {
             // Arrange
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
             int testRow = 5;
             int testColumn = 1;
             Direction testFacing = Direction.NORTH;

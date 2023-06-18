@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToyRobotGame.src.Identities;
+﻿using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Obstacles;
-using ToyRobotGame.src.Robot;
 
 namespace ToyRobot_Test.Obstacles
 {
