@@ -270,7 +270,7 @@ namespace ToyRobot_Test.RobotTest
             testRobot.PlaceWall(testWallRow, testWallColumn);
 
             // Assert
-            Assert.Equal(1, testRobot.walls.Count);
+            Assert.Single(testRobot.walls);
         }
         [Fact]
         public void PlaceWall_ShouldBlockRobotMovement_RobotInPosition21()
