@@ -12,6 +12,6 @@ namespace ToyRobotGame.src.Interfaces
     public interface IConditions
     {
         bool IsValidCoordinate(Coordinate position);
-        bool IsOccupiedCoordinate (Coordinate position, List<Wall> walls, Robot.Robot robot);
+        bool IsOccupiedCoordinate (Coordinate position, Robot.Robot robot);
     }
 }
