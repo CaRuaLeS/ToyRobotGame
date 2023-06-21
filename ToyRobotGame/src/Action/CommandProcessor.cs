@@ -5,7 +5,7 @@ namespace ToyRobotGame.src.Action
 {
     public class CommandProcessor: ICommandProcessor
     {
-        private Robot.Robot robot;   
+        private readonly Robot.Robot robot;   
         public CommandProcessor(Robot.Robot _robot)
         {
             this.robot = _robot;
@@ -15,15 +15,14 @@ namespace ToyRobotGame.src.Action
         {
             string[] parts = command.Split(' ');
 
-            if (parts.Length == 0 || command == "PLACE_ROBOT" || command == "PLACE_WALL") 
-                return;
+            if (parts.Length == 0 || command == "PLACE_ROBOT" || command == "PLACE_WALL")
+                throw new CustomException("Invalid command");
 
             string action = parts[0];
-
-            switch(action)
+            switch (action)
             {
                 case "PLACE_ROBOT":
-                    string[] robotPlace = parts[1]?.Split(',');
+                    string[] robotPlace = parts[1].Split(',');
                     if (robotPlace.Length == 3)
                     {
                         int row, col;
@@ -31,22 +30,24 @@ namespace ToyRobotGame.src.Action
                         if (int.TryParse(robotPlace[0], out col) && int.TryParse(robotPlace[1], out row) &&
                         Enum.TryParse(robotPlace[2], out facing))
                         {
-                            if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
                             robot.PlaceRobot(col, row, facing); 
                         }
+                        else { throw new CustomException("Invalid command"); }
+                        
                     }
+                    else { throw new CustomException("Invalid command. Need to add paramenter (PLACE_ROBOT X,Y,Facing)"); }
                     break;
                 case "PLACE_WALL":
-                    string[] wallPlace = parts[1]?.Split(',');
+                    string[] wallPlace = parts[1].Split(',');
                     if (wallPlace.Length == 2)
                     {
                         int row, col;
                         if (int.TryParse(wallPlace[0], out col) && int.TryParse(wallPlace[1], out row))
                         {
-                            if (row <= robot.XYBoardSize && col <= robot.XYBoardSize)
-                                robot.PlaceWall(col, row);
+                            robot.PlaceWall(col, row);
                         }
                     }
+                    else { throw new CustomException("Invalid command. Need to add coordinate (PLACE_WALL X,Y)"); }
                     break;
                 case "MOVE":
                     robot.Move();
@@ -61,7 +62,8 @@ namespace ToyRobotGame.src.Action
                     robot.Report();
                     break;
                 default:
-                    break;
+                    throw new CustomException("Invalid command");
+                    
             }
         }
     }

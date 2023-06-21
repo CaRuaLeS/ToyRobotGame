@@ -1,4 +1,5 @@
-﻿using ToyRobotGame.src.Action;
+﻿using ToyRobotGame;
+using ToyRobotGame.src.Action;
 using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Robot;
 using Xunit;
@@ -35,9 +36,10 @@ namespace ToyRobot_Test.Action
 
             // Act
             testProcessor.ProcessCommand(testValidCommand);
-            testProcessor.ProcessCommand(testInValidCommand);
 
-            // Assert
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testProcessor.ProcessCommand(testInValidCommand));
+
             Assert.Equal(2, testRobot.Position.Row);
             Assert.Equal(3, testRobot.Position.Column);
             Assert.Equal(Direction.WEST, testRobot.Facing);
@@ -66,11 +68,8 @@ namespace ToyRobot_Test.Action
             CommandProcessor testProcessor = new(testRobot);
             string testValidCommand = "PLACE_WALL 2,9";
 
-            // Act
-            testProcessor.ProcessCommand(testValidCommand);
-
-            // Assert
-            Assert.Empty(testRobot.walls);
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testProcessor.ProcessCommand(testValidCommand));
 
         }
         [Fact]
@@ -103,9 +102,10 @@ namespace ToyRobot_Test.Action
             // Act
             testProcessor.ProcessCommand("PLACE_ROBOT 2,2,NORTH");
             testProcessor.ProcessCommand(testValidCommand);
-            testProcessor.ProcessCommand("MOVE");
 
-            // Assert
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testProcessor.ProcessCommand("MOVE"));
+            
             Assert.Equal(2, testRobot.Position.Row);
             Assert.Equal(2, testRobot.Position.Column);
 

@@ -1,4 +1,5 @@
-﻿using ToyRobotGame.src.Identities;
+﻿using ToyRobotGame;
+using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Robot;
 
 namespace ToyRobot_Test.RobotTest
@@ -53,9 +54,10 @@ namespace ToyRobot_Test.RobotTest
 
             // Act
             testRobot.PlaceRobot(testColumn, testRow, testFacing);
-            testRobot.PlaceRobot(testInvalidRow, testInvalidColumn, testFacing);
 
-            // Assert
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testRobot.PlaceRobot(testInvalidRow, testInvalidColumn, testFacing));
+            
             Assert.Equal(testFacing, testRobot.Facing);
             Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
@@ -68,16 +70,17 @@ namespace ToyRobot_Test.RobotTest
             int testRow = 1;
             int testColumn = 1;
             var testFacing = Direction.SOUTH;
-            int testWallRow = 8;
-            int testWallColumn = 9;
+            int testWallRow = 4;
+            int testWallColumn = 3;
             Robot testRobot = new();
 
             // Act
             testRobot.PlaceRobot(testColumn, testRow, testFacing);
             testRobot.PlaceWall(testWallColumn, testWallRow);
-            testRobot.PlaceRobot(testWallColumn, testWallRow, testFacing);
 
-            // Assert
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testRobot.PlaceRobot(testWallColumn, testWallRow, testFacing));
+            
             Assert.Equal(testFacing, testRobot.Facing);
             Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
@@ -174,9 +177,10 @@ namespace ToyRobot_Test.RobotTest
 
             // Act
             testRobot.PlaceWall(2, 2);
-            testRobot.Move();
+            
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testRobot.Move());
 
-            // Assert
             Assert.Equal(testColumn, testRobot.Position.Column);
             Assert.Equal(testRow, testRobot.Position.Row);
         }
@@ -286,9 +290,10 @@ namespace ToyRobot_Test.RobotTest
 
             // Act
             testRobot.PlaceWall(2, 2);
-            testRobot.Move();
 
-            // Assert
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testRobot.Move());
+            
             Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
         }
@@ -304,9 +309,10 @@ namespace ToyRobot_Test.RobotTest
 
             // Act
             testRobot.PlaceWall(1, 1);
-            testRobot.Move();
 
-            // Assert
+            // Act & Assert
+            Assert.Throws<CustomException>(() => testRobot.Move());
+            
             Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
         }
