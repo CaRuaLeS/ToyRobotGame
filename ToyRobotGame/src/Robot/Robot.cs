@@ -26,18 +26,12 @@ namespace ToyRobotGame.src.Robot
 
             if (conditions.IsInsideBoardCoordinate(placeCoordinate) && !conditions.IsOccupiedCoordinate(placeCoordinate, this, walls))
             {
-
-                if (this == null)
-                {
-                    this.Position = new Coordinate(row, column);
-                    this.Facing = facing;
-                }
-                else
-                {
-                    this.Position = placeCoordinate;
-                    this.Facing = facing;
-                }
-
+                this.Position = placeCoordinate;
+                this.Facing = facing;
+            }
+            else
+            {
+                throw new CustomException($"Invalid coordinate. Make sure it is between 1 and {XYBoardSize} and it's not occupied.");
             }
         }
         public void Move() 
@@ -47,11 +41,14 @@ namespace ToyRobotGame.src.Robot
                 Coordinate newCoordinate = CalculateNewCoordinatePosition();
                 if (!conditions.IsOccupiedCoordinate(newCoordinate, this, walls))
                 {
-                this.Position = newCoordinate;
-                            
+                    this.Position = newCoordinate;                   
+                }
+                else
+                {
+                    throw new CustomException("Obstacle ahead. Can't move forwards.");
                 }
                     
-            }
+            }else { throw new CustomException("Invalid action. No robot placed on the board."); }
         }
         public void LookLeft() 
         {
@@ -67,6 +64,7 @@ namespace ToyRobotGame.src.Robot
             {
                 Console.WriteLine($"{this.Position.Column},{this.Position.Row},{this.Facing}");
             }
+            else { throw new CustomException("Invalid action. No robot placed on the board."); }
         }
         public void PlaceWall(int column, int row) 
         {
@@ -79,7 +77,9 @@ namespace ToyRobotGame.src.Robot
                 {
                     walls.Add(newWall);
                 }
+                else { throw new CustomException("Occupied coordinate."); }
             }
+            else { throw new CustomException($"Invalid coordinate. Make sure it is between 1 and {XYBoardSize}."); }
         }
 
         private void ChangeFacingDirection(int sideToLook)
@@ -94,6 +94,7 @@ namespace ToyRobotGame.src.Robot
 
                 this.Facing = (Direction)newValue;
             }
+            else { throw new CustomException("Invalid action. No robot placed on the board."); }
         }
 
         private Coordinate CalculateNewCoordinatePosition()
