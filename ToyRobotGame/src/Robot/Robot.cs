@@ -1,4 +1,5 @@
-﻿using ToyRobotGame.src.Identities;
+﻿using ToyRobotGame.src.Helpers;
+using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Interfaces;
 using ToyRobotGame.src.Obstacles;
 
@@ -11,17 +12,19 @@ namespace ToyRobotGame.src.Robot
         public Direction Facing { get; set; }
 
         public List<Wall> walls;
+        private  readonly Conditions conditions;
 
         public Robot()
         {
             walls = new List<Wall>();
+            conditions = new Conditions(XYBoardSize);
         }
 
         public void PlaceRobot(int column, int row, Direction facing)
         {
             Coordinate placeCoordinate = new(column, row);
 
-            if (IsValidCoordinate(placeCoordinate))
+            if (conditions.IsInsideBoardCoordinate(placeCoordinate) && !conditions.IsOccupiedCoordinate(placeCoordinate, this, walls))
             {
 
                 if (this == null)
@@ -39,10 +42,10 @@ namespace ToyRobotGame.src.Robot
         }
         public void Move() 
         {
-            if (this.Position != null && IsValidCoordinate(this.Position))
+            if (this.Position != null && conditions.IsInsideBoardCoordinate(this.Position))
             {
                 Coordinate newCoordinate = CalculateNewCoordinatePosition();
-                if (!IsOccupiedCoordinate(newCoordinate))
+                if (!conditions.IsOccupiedCoordinate(newCoordinate, this, walls))
                 {
                 this.Position = newCoordinate;
                             
@@ -69,10 +72,10 @@ namespace ToyRobotGame.src.Robot
         {
             Coordinate wallCoordinate = new (column, row);
 
-            if (IsValidCoordinate(wallCoordinate))
+            if (conditions.IsInsideBoardCoordinate(wallCoordinate))
             {
                 Wall newWall = new(wallCoordinate);
-                if (!IsOccupiedCoordinate(wallCoordinate))
+                if (!conditions.IsOccupiedCoordinate(wallCoordinate, this, walls))
                 {
                     walls.Add(newWall);
                 }
@@ -92,25 +95,7 @@ namespace ToyRobotGame.src.Robot
                 this.Facing = (Direction)newValue;
             }
         }
-        private bool IsValidCoordinate(Coordinate position)
-        {
-            if (position.Row >= 1 && position.Row <= XYBoardSize && position.Column >= 1 && position.Column <= XYBoardSize)
-            {
-                return true;
-            }
-            return false;
-        }
-        private bool IsOccupiedCoordinate(Coordinate position)
-        {
 
-            if (this.Position != null && this.Position.Row == position.Row && this.Position.Column == position.Column
-                || walls.Exists(wall => wall.Position.Row == position.Row && wall.Position.Column == position.Column))
-            {
-                return true;
-            }
-            return false;
-
-        }
         private Coordinate CalculateNewCoordinatePosition()
         {
             Coordinate newPosition = new(this.Position.Column, this.Position.Row);
