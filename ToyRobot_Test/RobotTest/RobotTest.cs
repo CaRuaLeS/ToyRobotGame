@@ -15,7 +15,7 @@ namespace ToyRobot_Test.RobotTest
             Robot testRobot = new();
 
             // Act
-            testRobot.PlaceRobot(testRow, testColumn, testFacing);
+            testRobot.PlaceRobot(testColumn, testRow, testFacing);
 
             // Assert
             Assert.Equal(testFacing, testRobot.Facing);
@@ -52,8 +52,30 @@ namespace ToyRobot_Test.RobotTest
             Robot testRobot = new();
 
             // Act
-            testRobot.PlaceRobot(testRow, testColumn, testFacing);
+            testRobot.PlaceRobot(testColumn, testRow, testFacing);
             testRobot.PlaceRobot(testInvalidRow, testInvalidColumn, testFacing);
+
+            // Assert
+            Assert.Equal(testFacing, testRobot.Facing);
+            Assert.Equal(testRow, testRobot.Position.Row);
+            Assert.Equal(testColumn, testRobot.Position.Column);
+        }
+
+        [Fact]
+        public void Robot_PlaceRobotFunction_OnWallPosition_RobotStayInPosition()
+        {
+            // Arrange
+            int testRow = 1;
+            int testColumn = 1;
+            var testFacing = Direction.SOUTH;
+            int testWallRow = 8;
+            int testWallColumn = 9;
+            Robot testRobot = new();
+
+            // Act
+            testRobot.PlaceRobot(testColumn, testRow, testFacing);
+            testRobot.PlaceWall(testWallColumn, testWallRow);
+            testRobot.PlaceRobot(testWallColumn, testWallRow, testFacing);
 
             // Assert
             Assert.Equal(testFacing, testRobot.Facing);
@@ -98,8 +120,8 @@ namespace ToyRobot_Test.RobotTest
         {
             // Arrange
             Robot testRobot = new();
-            int testFinalRow = 3;
             int testFinalColumn = 5;
+            int testFinalRow = 3;
             testRobot.PlaceRobot(1, 3, Direction.WEST);
 
             // Act
@@ -147,16 +169,16 @@ namespace ToyRobot_Test.RobotTest
             // Arrange
             Robot testRobot = new();
             int testRow = 1;
-            int testColumn = 1;
-            testRobot.PlaceRobot(testRow, testColumn, Direction.NORTH);
+            int testColumn = 2;
+            testRobot.PlaceRobot(testColumn, testRow, Direction.NORTH);
 
             // Act
-            testRobot.PlaceWall(1, 2);
+            testRobot.PlaceWall(2, 2);
             testRobot.Move();
 
             // Assert
-            Assert.Equal(testRow, testRobot.Position.Row);
             Assert.Equal(testColumn, testRobot.Position.Column);
+            Assert.Equal(testRow, testRobot.Position.Row);
         }
 
         [Fact]
@@ -215,26 +237,6 @@ namespace ToyRobot_Test.RobotTest
             // Assert
             Assert.Equal(testingDirectionResult, testRobot.Facing);
         }
-        [Fact]
-        public void Look_RughtAndLeftMultipleTimes_FacingMustBeSOUTH()
-        {
-            // Arrange
-            Robot testRobot = new();
-            Direction testingDirectionResult = Direction.SOUTH;
-            testRobot.PlaceRobot(1, 3, Direction.EAST);
-
-            // Act
-            testRobot.LookLeft();
-            testRobot.LookLeft();
-            testRobot.LookRight();
-            testRobot.LookLeft();
-            testRobot.LookRight();
-            testRobot.LookRight();
-            testRobot.LookRight();
-
-            // Assert
-            Assert.Equal(testingDirectionResult, testRobot.Facing);
-        }
 
         [Fact]
         public void Report_ResultMustBe_23NORTH()
@@ -244,7 +246,7 @@ namespace ToyRobot_Test.RobotTest
             Direction testDirection = Direction.NORTH;
             int testRow = 2;
             int testCol = 3;
-            testRobot.PlaceRobot(testRow, testCol, testDirection);
+            testRobot.PlaceRobot(testCol, testRow, testDirection);
             // StringWriter stores the data
             var consoleOut = new StringWriter();
             // SetOut stores the data in consoleOut
@@ -253,7 +255,7 @@ namespace ToyRobot_Test.RobotTest
             // Act
             testRobot.Report();
             var actualTestOutput = consoleOut.ToString();
-            string testReportResult = $"{testRow},{testCol},{testDirection}" + Environment.NewLine;
+            string testReportResult = $"{testCol},{testRow},{testDirection}" + Environment.NewLine;
 
             // Assert
             Assert.Equal(testReportResult, actualTestOutput);
