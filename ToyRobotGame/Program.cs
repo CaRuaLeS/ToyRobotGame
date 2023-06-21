@@ -17,7 +17,14 @@ namespace ToyRobotGame // Note: actual namespace depends on the project name.
                 if (userInput == "END GAME")
                     break;
                 
-                commandProcessor.ProcessCommand(userInput);
+                try 
+                {
+                    commandProcessor.ProcessCommand(userInput);
+                }
+                catch (CustomException ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
             }
 
         }
