@@ -24,7 +24,7 @@ namespace ToyRobotGame.src.Robot
         {
             Coordinate placeCoordinate = new(column, row);
 
-            if (conditions.IsValidCoordinate(placeCoordinate) && !conditions.IsOccupiedCoordinate(placeCoordinate, this, walls))
+            if (conditions.IsInsideBoardCoordinate(placeCoordinate) && !conditions.IsOccupiedCoordinate(placeCoordinate, this, walls))
             {
 
                 if (this == null)
@@ -42,7 +42,7 @@ namespace ToyRobotGame.src.Robot
         }
         public void Move() 
         {
-            if (this.Position != null && conditions.IsValidCoordinate(this.Position))
+            if (this.Position != null && conditions.IsInsideBoardCoordinate(this.Position))
             {
                 Coordinate newCoordinate = CalculateNewCoordinatePosition();
                 if (!conditions.IsOccupiedCoordinate(newCoordinate, this, walls))
@@ -72,7 +72,7 @@ namespace ToyRobotGame.src.Robot
         {
             Coordinate wallCoordinate = new (column, row);
 
-            if (conditions.IsValidCoordinate(wallCoordinate))
+            if (conditions.IsInsideBoardCoordinate(wallCoordinate))
             {
                 Wall newWall = new(wallCoordinate);
                 if (!conditions.IsOccupiedCoordinate(wallCoordinate, this, walls))

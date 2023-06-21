@@ -18,7 +18,7 @@ namespace ToyRobot_Test.HelpersTest
             Conditions testCondition = new(testBoardSize);
 
             // Act
-            bool testValid = testCondition.IsValidCoordinate(testCoordinate);
+            bool testValid = testCondition.IsInsideBoardCoordinate(testCoordinate);
 
             // Assert
             Assert.True(testValid);
@@ -35,7 +35,7 @@ namespace ToyRobot_Test.HelpersTest
             Conditions testCondition = new(testBoardSize);
 
             // Act
-            bool testValid = testCondition.IsValidCoordinate(testCoordinate);
+            bool testValid = testCondition.IsInsideBoardCoordinate(testCoordinate);
 
             // Assert
             Assert.False(testValid);

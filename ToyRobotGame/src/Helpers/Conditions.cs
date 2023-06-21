@@ -13,7 +13,7 @@ namespace ToyRobotGame.src.Helpers
             XYBoardSize = boardSize;
         }
 
-        public bool IsValidCoordinate(Coordinate position)
+        public bool IsInsideBoardCoordinate(Coordinate position)
         {
             if (position.Row >= 1 && position.Row <= XYBoardSize && position.Column >= 1 && position.Column <= XYBoardSize)
             {
