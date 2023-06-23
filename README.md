@@ -1,4 +1,4 @@
-# ToyRobotGame_Backend_CarlosRuiz
+# OLD VERSION - ToyRobotGame_Backend_CarlosRuiz
 
 ToyRobotGame completed with S.O.L.I.D principles.
 
@@ -25,7 +25,7 @@ Having for example a robot placed in 2,3, will be:
     ↑  ↑  ↑  ↑  ↑
     1  2  3  4  5
 ```
-HAVE CREATE A BRANCH named `feature/modified-version`, where the output will be the same as the shown in th test examples, also with all the respect, I think that in general, this version will be more accurate for the row, column position, but as i said, i have created a branch with the modified version with the other outcome, in case it is needed to change it, I will justo have to create a pull request and merge it.
+THIS IS THE OLD VERSION. BEFORE THE REFACTOR.
 
 TEST INSTRUCTIONS:
 ## TEST: Toy Robot Game - Backend (C#)
