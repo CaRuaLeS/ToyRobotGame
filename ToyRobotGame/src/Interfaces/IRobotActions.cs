@@ -8,6 +8,5 @@ namespace ToyRobotGame.src.Interfaces
         void Move();
         void LookLeft();
         void LookRight();
-        void Report();
     }
 }
