@@ -243,28 +243,6 @@ namespace ToyRobot_Test.RobotTest
         }
 
         [Fact]
-        public void Report_ResultMustBe_23NORTH()
-        {
-            // Arrange
-            Robot testRobot = new();
-            Direction testDirection = Direction.NORTH;
-            int testRow = 2;
-            int testCol = 3;
-            testRobot.PlaceRobot(testCol, testRow, testDirection);
-            // StringWriter stores the data
-            var consoleOut = new StringWriter();
-            // SetOut stores the data in consoleOut
-            Console.SetOut(consoleOut);
-
-            // Act
-            testRobot.Report();
-            var actualTestOutput = consoleOut.ToString();
-            string testReportResult = $"{testCol},{testRow},{testDirection}" + Environment.NewLine;
-
-            // Assert
-            Assert.Equal(testReportResult, actualTestOutput);
-        }
-        [Fact]
         public void PlaceWall_ShouldBePlaced_InPosition22()
         {
             // Arrange

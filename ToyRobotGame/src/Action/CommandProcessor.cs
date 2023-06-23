@@ -8,7 +8,7 @@ namespace ToyRobotGame.src.Action
         private readonly Robot.Robot robot;   
         public CommandProcessor(Robot.Robot _robot)
         {
-            this.robot = _robot;
+            robot = _robot;
         }
 
         public void ProcessCommand(string command) 
@@ -59,12 +59,21 @@ namespace ToyRobotGame.src.Action
                     robot.LookRight();
                     break;
                 case "REPORT":
-                    robot.Report();
+                    Report(robot);
                     break;
                 default:
                     throw new CustomException("Invalid command");
                     
             }
+
         }
+            public void Report(Robot.Robot robotElement)
+            {
+                if (robotElement.Position != null)
+                {
+                    Console.WriteLine($"{robotElement.Position.Column},{robotElement.Position.Row},{robotElement.Facing}");
+                }
+                else { throw new CustomException("Invalid action. No robot placed on the board."); }
+            }
     }
 }
