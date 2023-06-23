@@ -9,10 +9,10 @@ namespace ToyRobot_Test.Obstacles
         public void Wall_CreateWithCoordinates()
         {
             // Arrange
-            var testPosition = new Coordinate(0, 0);
+            Coordinate testPosition = new (1, 3);
 
             // Act
-            var testWall = new Wall(testPosition);
+            Wall testWall = new (testPosition);
 
             // Assert
             Assert.Equal(testPosition, testWall.Position);
