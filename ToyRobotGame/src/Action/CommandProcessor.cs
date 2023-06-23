@@ -25,10 +25,8 @@ namespace ToyRobotGame.src.Action
                     string[] robotPlace = parts[1].Split(',');
                     if (robotPlace.Length == 3)
                     {
-                        int row, col;
-                        Direction facing;
-                        if (int.TryParse(robotPlace[0], out col) && int.TryParse(robotPlace[1], out row) &&
-                        Enum.TryParse(robotPlace[2], out facing))
+                        if (int.TryParse(robotPlace[0], out int col) && int.TryParse(robotPlace[1], out int row) &&
+                        Enum.TryParse(robotPlace[2], out Direction facing))
                         {
                             robot.PlaceRobot(col, row, facing); 
                         }
@@ -41,8 +39,7 @@ namespace ToyRobotGame.src.Action
                     string[] wallPlace = parts[1].Split(',');
                     if (wallPlace.Length == 2)
                     {
-                        int row, col;
-                        if (int.TryParse(wallPlace[0], out col) && int.TryParse(wallPlace[1], out row))
+                        if (int.TryParse(wallPlace[0], out int col) && int.TryParse(wallPlace[1], out int row))
                         {
                             robot.PlaceWall(col, row);
                         }
