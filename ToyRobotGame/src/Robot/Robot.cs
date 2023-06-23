@@ -58,14 +58,7 @@ namespace ToyRobotGame.src.Robot
         {
             ChangeFacingDirection(+1);
         }
-        public void Report()
-        {
-            if (this.Position != null)
-            {
-                Console.WriteLine($"{this.Position.Column},{this.Position.Row},{this.Facing}");
-            }
-            else { throw new CustomException("Invalid action. No robot placed on the board."); }
-        }
+       
         public void PlaceWall(int column, int row) 
         {
             Coordinate wallCoordinate = new (column, row);
