@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToyRobotGame.src.Identities;
+﻿using ToyRobotGame.src.Identities;
 
 namespace ToyRobot_Test.IdentitiesTest
 {
@@ -15,7 +10,7 @@ namespace ToyRobot_Test.IdentitiesTest
             int testRow = 2;
             int testColumn = 3;
 
-            Coordinate coordinate = new (testRow, testColumn);
+            Coordinate coordinate = new (testColumn, testRow);
 
             Assert.Equal(testRow, coordinate.Row);
             Assert.Equal(testColumn, coordinate.Column);

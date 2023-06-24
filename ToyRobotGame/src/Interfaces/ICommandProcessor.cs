@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ToyRobotGame.src.Robot;
 
 namespace ToyRobotGame.src.Interfaces
 {
     public interface ICommandProcessor
     {
         void ProcessCommand(string command);
+
+        void Report(Robot.Robot element);
     }
 }

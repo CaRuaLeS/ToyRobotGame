@@ -1,31 +1,15 @@
 # ToyRobotGame_Backend_CarlosRuiz
 
-ToyRobotGame completed with S.O.L.I.D principles.
+REFACTOR PROJECT. ToyRobotGame completed with S.O.L.I.D principles.
 
 ## Commets
-- This version has the functionality as the requirement says, with the next order of columns and rows:
-- Rows goes in this direction:
-```json→
-→
-→
-→
-→
-```
-And columns goes:
-```json
-↑ ↑ ↑ ↑ ↑
-```
-Having for example a robot placed in 2,3, will be:
-```json
-5 →               
-4 →               
-3 →               
-2 →       X       (Row 2, Column 3)
-1 →               
-    ↑  ↑  ↑  ↑  ↑
-    1  2  3  4  5
-```
-HAVE CREATE A BRANCH named `feature/modified-version`, where the output will be the same as the shown in th test examples, also with all the respect, I think that in general, this version will be more accurate for the row, column position, but as i said, i have created a branch with the modified version with the other outcome, in case it is needed to change it, I will justo have to create a pull request and merge it.
+NEW COMMANDS:
+
+- `RESTART` - Restarts the game.
+
+- `END GAME` - Ends the game.
+
+Leave the old version (before refactor) in another branch `feature/old-version-colrow-reverse`, with the rows and columns changed.
 
 TEST INSTRUCTIONS:
 ## TEST: Toy Robot Game - Backend (C#)

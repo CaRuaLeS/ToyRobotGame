@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToyRobotGame.src.Identities;
+﻿using ToyRobotGame.src.Identities;
 
 namespace ToyRobotGame.src.Interfaces
 {
@@ -13,6 +8,5 @@ namespace ToyRobotGame.src.Interfaces
         void Move();
         void LookLeft();
         void LookRight();
-        void Report();
     }
 }

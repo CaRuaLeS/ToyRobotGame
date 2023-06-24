@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToyRobotGame.src.Action;
+﻿using ToyRobotGame.src.Helpers;
 using ToyRobotGame.src.Identities;
 using ToyRobotGame.src.Interfaces;
 using ToyRobotGame.src.Obstacles;
@@ -12,49 +7,48 @@ namespace ToyRobotGame.src.Robot
 {
     public class Robot: IRobot, IRobotActions, IGameActions
     {
-        public int XYBoardSize = 5;
-        public Coordinate? Position { get; set; }
+        public const int XYBoardSize = 5;
+        public Coordinate Position { get; set; } = null!;
         public Direction Facing { get; set; }
 
         public List<Wall> walls;
+        private  readonly Conditions conditions;
 
         public Robot()
         {
             walls = new List<Wall>();
+            conditions = new Conditions(XYBoardSize);
         }
 
-        public void PlaceRobot(int row, int column, Direction facing)
+        public void PlaceRobot(int column, int row, Direction facing)
         {
-            Coordinate placeCoordinate = new(row, column);
+            Coordinate placeCoordinate = new(column, row);
 
-            if (isValidCoordinate(placeCoordinate))
+            if (conditions.IsInsideBoardCoordinate(placeCoordinate) && !conditions.IsOccupiedCoordinate(placeCoordinate, this, walls))
             {
-
-                if (this == null)
-                {
-                    this.Position = new Coordinate(row, column);
-                    this.Facing = facing;
-                }
-                else
-                {
-                    this.Position = placeCoordinate;
-                    this.Facing = facing;
-                }
-
+                this.Position = placeCoordinate;
+                this.Facing = facing;
+            }
+            else
+            {
+                throw new CustomException($"Invalid coordinate. Make sure it is between 1 and {XYBoardSize} and it's not occupied.");
             }
         }
         public void Move() 
         {
-            if (this.Position != null && isValidCoordinate(this.Position))
+            if (this.Position != null && conditions.IsInsideBoardCoordinate(this.Position))
             {
                 Coordinate newCoordinate = CalculateNewCoordinatePosition();
-                if (!isOccupiedCoordinate(newCoordinate))
+                if (!conditions.IsOccupiedCoordinate(newCoordinate, this, walls))
                 {
-                this.Position = newCoordinate;
-                            
+                    this.Position = newCoordinate;                   
+                }
+                else
+                {
+                    throw new CustomException("Obstacle ahead. Can't move forwards.");
                 }
                     
-            }
+            }else { throw new CustomException("Invalid action. No robot placed on the board."); }
         }
         public void LookLeft() 
         {
@@ -64,25 +58,21 @@ namespace ToyRobotGame.src.Robot
         {
             ChangeFacingDirection(+1);
         }
-        public void Report()
+       
+        public void PlaceWall(int column, int row) 
         {
-            if (this.Position != null)
-            {
-                Console.WriteLine($"{this.Position.Row},{this.Position.Column},{this.Facing}");
-            }
-        }
-        public void PlaceWall(int row, int column) 
-        {
-            Coordinate wallCoordinate = new (row, column);
+            Coordinate wallCoordinate = new (column, row);
 
-            if (isValidCoordinate(wallCoordinate))
+            if (conditions.IsInsideBoardCoordinate(wallCoordinate))
             {
                 Wall newWall = new(wallCoordinate);
-                if (!isOccupiedCoordinate(wallCoordinate))
+                if (!conditions.IsOccupiedCoordinate(wallCoordinate, this, walls))
                 {
                     walls.Add(newWall);
                 }
+                else { throw new CustomException("Occupied coordinate."); }
             }
+            else { throw new CustomException($"Invalid coordinate. Make sure it is between 1 and {XYBoardSize}."); }
         }
 
         private void ChangeFacingDirection(int sideToLook)
@@ -97,29 +87,12 @@ namespace ToyRobotGame.src.Robot
 
                 this.Facing = (Direction)newValue;
             }
+            else { throw new CustomException("Invalid action. No robot placed on the board."); }
         }
-        private bool isValidCoordinate(Coordinate position)
-        {
-            if (position.Row >= 1 && position.Row <= XYBoardSize && position.Column >= 1 && position.Column <= XYBoardSize)
-            {
-                return true;
-            }
-            return false;
-        }
-        private bool isOccupiedCoordinate(Coordinate position)
-        {
 
-            if (this.Position != null && this.Position.Row == position.Row && this.Position.Column == position.Column
-                || walls.Exists(wall => wall.Position.Row == position.Row && wall.Position.Column == position.Column))
-            {
-                return true;
-            }
-            return false;
-
-        }
         private Coordinate CalculateNewCoordinatePosition()
         {
-            Coordinate newPosition = new(this.Position.Row, this.Position.Column);
+            Coordinate newPosition = new(this.Position.Column, this.Position.Row);
 
             switch (this.Facing)
             {

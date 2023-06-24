@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ToyRobotGame.src.Identities
+﻿namespace ToyRobotGame.src.Identities
 {
     public class Coordinate
     {
         public int Row;
         public int Column;
 
-        public Coordinate(int row, int column)
+        public Coordinate(int column, int row)
         {
-            Row = row;
             Column = column;
+            Row = row;
         }
     }
 }
