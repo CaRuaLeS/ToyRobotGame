@@ -9,6 +9,8 @@ NEW COMMANDS:
 
 - `END GAME` - Ends the game.
 
+Leave the old version (before refactor) in another branch `feature/old-version-colrow-reverse`, with the rows and columns changed.
+
 TEST INSTRUCTIONS:
 ## TEST: Toy Robot Game - Backend (C#)
 
